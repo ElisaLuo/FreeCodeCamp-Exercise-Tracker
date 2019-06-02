@@ -1,0 +1,37 @@
+const express = require('express')
+const app = express()
+const mongoose = require("mongoose");
+const cors = require('cors');
+const User = require('./models/users.js');
+
+mongoose.connect('mongodb://elisal:pdnlxx021@ds231387.mlab.com:31387/exercise-tracker');
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error'));
+db.once('open', () => {
+  console.log('Connection to the database successful');
+});
+
+
+app.use(cors());
+
+app.use(express.static('public'));
+
+app.get('/api/users', function(req, res){
+    User.find({}, function(err, user){
+        if(err){
+            console.log(err);
+        } else{
+            res.json(user)
+        }
+    })
+});
+
+app.get('*', function(req, res) {
+    res.sendFile(__dirname + '/public/index.html');
+  });
+
+const listener = app.listen(process.env.PORT || 3000, () => {
+  console.log('Your app is listening on port ' + listener.address().port);
+});
+
+//https://hackernoon.com/how-to-combine-a-nodejs-back-end-with-a-reactjs-front-end-app-ea9b24715032
