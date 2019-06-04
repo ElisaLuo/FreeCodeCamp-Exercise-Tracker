@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import UserList from './components/UserList';
 import ExerciseList from './components/ExerciseList';
 import ExerciseDetail from './components/ExerciseDetail';

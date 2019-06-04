@@ -3,6 +3,7 @@ const app = express()
 const mongoose = require("mongoose");
 const cors = require('cors');
 const User = require('./models/users.js');
+const bodyParser = require('body-parser');
 
 mongoose.connect('mongodb://elisal:pdnlxx021@ds231387.mlab.com:31387/exercise-tracker');
 var db = mongoose.connection;
@@ -13,17 +14,28 @@ db.once('open', () => {
 
 
 app.use(cors());
-
 app.use(express.static('public'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/api/users', function(req, res){
     User.find({}, function(err, user){
         if(err){
             console.log(err);
         } else{
-            res.json(user)
+            res.json(user);
+            //console.log(req.body);
         }
     })
+});
+
+app.post('/api/users', function(req, res) {
+    User.create({
+        username: req.body.username,
+        created: Date.now()
+    }, err =>{
+        if(err) throw err;
+    });
 });
 
 app.get('*', function(req, res) {
