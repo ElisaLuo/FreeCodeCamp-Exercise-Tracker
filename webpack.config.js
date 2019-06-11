@@ -1,4 +1,5 @@
 const path = require('path');
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 module.exports = {
     mode: 'production',
@@ -8,6 +9,13 @@ module.exports = {
       path: path.join(__dirname, 'public'),
       filename: 'bundle.js',
     },
+    plugins: [
+      new BrowserSyncPlugin({
+        host: 'localhost',
+        port: 3000,
+        server: { baseDir: ['public'] }
+      })
+    ],
     resolve: {
       extensions: ['.js', '.jsx'],
     },
@@ -20,5 +28,5 @@ module.exports = {
           include: path.join(__dirname, 'client')
         }
       ],
-    },
+    }
   };

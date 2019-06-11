@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { AxiosProvider, Request, Get, Delete, Head, Post, Put, Patch, withAxios } from 'react-axios'
 
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
@@ -8,10 +9,10 @@ import ListItemText from '@material-ui/core/ListItemText';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
-import nFetch from './Utils';
 import axios from 'axios';
+import UserList from './UserList';
 
-class UserList extends Component{
+class AddUser extends Component{
     constructor(props){
         super(props);
 
@@ -42,10 +43,11 @@ class UserList extends Component{
             console.log(err, 'Username not added');
         });
     };
-    
+
     render(){
         return (
             <div>
+                
                 <input
                     onChange={this.handleChange}
                     placeholder="Add User"
@@ -57,12 +59,29 @@ class UserList extends Component{
                     >
                     Submit
                     </button>
+                <div>
+                <Get url="/api/users">
+                    {(error, response, isLoading, makeRequest, axios) => {
+                    if(error) {
+                        return (<div>Something bad happened: {error.message} <button onClick={() => makeRequest({ params: { reload: true } })}>Retry</button></div>)
+                    }
+                    else if(isLoading) {
+                        return (<div>Loading...</div>)
+                    }
+                    else if(response !== null) {
+                        response.data.map(results=>{
+                            console.log(results.username);
+                        })
+                        return (<div>{response.data.map(results=><div>{results.username}</div>)}</div>)
+                    }
+                    return (<div>Default message before request is made.</div>)
+                    }}
+                </Get>
+                </div>
             </div>
           );
     }
-
-    
 }
 
 
-export default UserList;
+export default AddUser;
