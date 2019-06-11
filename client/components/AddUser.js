@@ -1,14 +1,6 @@
 import React, {Component} from 'react';
 import { AxiosProvider, Request, Get, Delete, Head, Post, Put, Patch, withAxios } from 'react-axios'
 
-import { withStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-
 import axios from 'axios';
 import UserList from './UserList';
 
@@ -59,25 +51,7 @@ class AddUser extends Component{
                     >
                     Submit
                     </button>
-                <div>
-                <Get url="/api/users">
-                    {(error, response, isLoading, makeRequest, axios) => {
-                    if(error) {
-                        return (<div>Something bad happened: {error.message} <button onClick={() => makeRequest({ params: { reload: true } })}>Retry</button></div>)
-                    }
-                    else if(isLoading) {
-                        return (<div>Loading...</div>)
-                    }
-                    else if(response !== null) {
-                        response.data.map(results=>{
-                            console.log(results.username);
-                        })
-                        return (<div>{response.data.map(results=><div>{results.username}</div>)}</div>)
-                    }
-                    return (<div>Default message before request is made.</div>)
-                    }}
-                </Get>
-                </div>
+                <UserList />
             </div>
           );
     }

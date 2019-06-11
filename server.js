@@ -30,12 +30,22 @@ app.get('/api/users', function(req, res){
 });
 
 app.post('/api/users', function(req, res) {
-    User.create({
-        username: req.body.username,
-        created: Date.now()
-    }, err =>{
-        if(err) throw err;
-    });
+    User.findOne({username: req.body.username}, function(err, user){
+        if (err) throw err;
+
+        if(!user){
+            User.create({
+                username: req.body.username,
+                created: Date.now()
+            }, err =>{
+                if(err) throw err;
+            });
+        }
+        else if (user){
+            res.send('username is taken')
+        }
+    })
+    
 });
 
 app.get('*', function(req, res) {
