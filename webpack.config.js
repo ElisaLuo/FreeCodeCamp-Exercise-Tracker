@@ -1,5 +1,5 @@
 const path = require('path');
-const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+const NodemonBrowsersyncPlugin = require('nodemon-browsersync-webpack-plugin');
 
 module.exports = {
     mode: 'production',
@@ -10,10 +10,14 @@ module.exports = {
       filename: 'bundle.js',
     },
     plugins: [
-      new BrowserSyncPlugin({
-        host: 'localhost',
-        port: 3000,
-        server: { baseDir: ['public'] }
+      new NodemonBrowsersyncPlugin({
+        script: 'server.js',
+        ignore:[
+          "src/*", 
+          "public/*"
+        ],
+        ext: 'js, json',
+        verbose: true
       })
     ],
     resolve: {

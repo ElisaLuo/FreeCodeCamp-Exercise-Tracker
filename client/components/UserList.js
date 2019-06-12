@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
-import { AxiosProvider, Request, Get, Delete, Head, Post, Put, Patch, withAxios } from 'react-axios'
-
-import axios from 'axios';
+import {Link} from 'react-router-dom';
 
 class UserList extends Component{
     constructor(props){
@@ -12,7 +10,7 @@ class UserList extends Component{
         };
     }
 
-    componentDidUpdate() {
+    componentDidMount() {
         fetch('/api/users')
             .then(res => res.json())
             .then((result) => {
@@ -38,7 +36,7 @@ class UserList extends Component{
         const {usernames} = this.state;
         return (
             <div>
-                {usernames.map(username => <div>{username.username}</div>)}
+                {usernames.map(username => <Link to={`/user/${username.username}`}>{username.username}<br/></Link>)}
             </div>     
         );
     }

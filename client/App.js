@@ -11,9 +11,8 @@ function App() {
     <BrowserRouter>
         <Switch>
           <Route exact path={"/"} component={AddUser} />
-          <Route path={"/users"} component={AddUser} />
-          <Route path={"/user/:username/exercises"} component={ExerciseList} />
-          <Route path={"/user/:username/exercise/:id"} component={ExerciseDetail} />
+          <Route path={"/user/:username"} component={ExerciseList} />
+          <Route path={"/user/:username/:id"} component={ExerciseDetail} />
           <Redirect to="/"/>
         </Switch>
       </BrowserRouter>
