@@ -36,11 +36,11 @@ class UserList extends Component{
         const {usernames} = this.state;
         return (
             <div>
-                {usernames.map(username => <Link to={`/user/${username.username}`}>{username.username}<br/></Link>)}
+               {usernames.map(username => <Link to={`/user/${username.username}`}>{username.username}<br/></Link>)}
             </div>     
         );
     }
 }
 
-
+// 
 export default UserList;

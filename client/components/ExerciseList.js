@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 
 class ExerciseList extends Component{
     constructor(props){
@@ -14,7 +15,7 @@ class ExerciseList extends Component{
     }
 
     componentDidMount() {
-        console.log(this.props);
+        //console.log(this.props);
         fetch(`/api/exercise/${this.props.match.params.username}`)
             .then(res => res.json())
             .then((result) => {
@@ -32,8 +33,7 @@ class ExerciseList extends Component{
                 this.setState({
                     exercises: result
                 });
-                }
-            )
+            })
     }
 
     handleChange(event){
@@ -43,7 +43,6 @@ class ExerciseList extends Component{
     }
 
     addExercise = event => {
-        console.log(this.props);
         event.preventDefault();
         this.setState({
             user: this.props.match.params.username,
@@ -52,7 +51,6 @@ class ExerciseList extends Component{
         axios.post(`/api/exercise/${this.props.match.params.username}`,{
             exercise: this.state.exercise
         }).then(response => {
-            
             console.log(response, 'Exercise added');
         }).catch(err => {
             console.log(err, 'Exercise not added');
@@ -74,11 +72,11 @@ class ExerciseList extends Component{
                     >
                     Submit
                     </button>
-                    {exercises.map(exercise => <div>{exercise.name}<br/></div>)}
+                {exercises.map(exercise => <Link to={`/${exercise._id}`}>{exercise.name}<br/></Link>)}
             </div>
           );
     }
 }
 
-
+//
 export default ExerciseList;

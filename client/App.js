@@ -12,7 +12,7 @@ function App() {
         <Switch>
           <Route exact path={"/"} component={AddUser} />
           <Route path={"/user/:username"} component={ExerciseList} />
-          <Route path={"/user/:username/:id"} component={ExerciseDetail} />
+          <Route path={"/:exerciseId"} component={ExerciseDetail} />
           <Redirect to="/"/>
         </Switch>
       </BrowserRouter>

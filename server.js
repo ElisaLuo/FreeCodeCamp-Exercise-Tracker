@@ -40,6 +40,16 @@ app.get('/api/exercise/:userId', function(req, res){
     })
 });
 
+app.get('/api/exercise/:userId/:exerciseId', function(req, res){
+    Exercise.find({_id:req.params.exerciseId}, function(err, exercise){
+        if(err){
+            console.log(err);
+        } else{
+            res.json(exercise);
+        }
+    })
+});
+
 app.post('/api/users', function(req, res) {
     User.findOne({username: req.body.username}, function(err, user){
         if (err) throw err;
@@ -66,6 +76,17 @@ app.post('/api/exercise/:userId', function(req, res) {
     }, err =>{
         if(err) throw err;
     });
+});
+
+app.post('/api/exercise/details/:exerciseId', function(req, res) {
+    Exercise.updateOne({"_id": req.params.exerciseId},{$set: {
+        "name": req.body.name,
+        "date": req.body.date,
+        "duration": req.body.duration,
+        "description":req.body.description
+    }},  {upsert: true}, err=>{
+        if(err) console.log(err);
+    })
 });
 
 app.get('*', function(req, res) {
