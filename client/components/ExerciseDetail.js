@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
+import { Input, List, Button } from 'semantic-ui-react';
+import Calendar from 'react-calendar';
+import DatePicker from 'react-datepicker';
 
 class ExerciseDetail extends Component{
     constructor(props){
@@ -13,14 +16,14 @@ class ExerciseDetail extends Component{
 
         this.state ={
             name: "",
-            date: 0,
+            startDate: new Date(),
             duration: new Number(),
             description: ""
         };
     }
 
     handleNameChange(event){this.setState({name: event.target.value});}
-    handleDateChange(event){this.setState({date: event.target.value});}
+    handleDateChange = date => this.setState({startDate: date});
     handleDurationChange(event){this.setState({duration: event.target.value});}
     handleDescriptionChange(event){this.setState({description: event.target.value});}
 
@@ -57,6 +60,13 @@ class ExerciseDetail extends Component{
         }).catch(err => {
             console.log(err, 'Exercise not updeated');
         });
+        //console.log(this.state);
+        this.setState({
+            name: this.state.name,
+            date: this.state.date,
+            duration: this.state.duration,
+            description: this.state.description
+        });
     };
 
     render(){
@@ -68,11 +78,15 @@ class ExerciseDetail extends Component{
                     name="name"
                     value={this.state.name}/>
                 <br/>
-                <input
+                <DatePicker
+                    selected={this.state.date}
                     onChange={this.handleDateChange}
-                    placeholder="Exercise Date"
-                    name="date"
-                    value={this.state.date}/>
+                    value={this.state.date}
+                    name="date"/>
+                {/* <Calendar 
+                    onChange={this.handleDateChange}
+                    value={this.state.date}
+                    name="date"/> */}
                 <br/>
                 <input
                     onChange={this.handleDurationChange}

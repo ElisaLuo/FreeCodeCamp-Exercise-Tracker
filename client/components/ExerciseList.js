@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
+import { Input, List, Button } from 'semantic-ui-react'
 
 class ExerciseList extends Component{
     constructor(props){
@@ -61,18 +62,23 @@ class ExerciseList extends Component{
         const {exercises} = this.state;
         return (
             <div>
-                <input
-                    onChange={this.handleChange}
-                    placeholder="Add Exercise"
-                    name="exercise"
-                    value={this.state.exercise}/>
-                <button
-                    type={"submit"}
-                    onClick={this.addExercise}
-                    >
-                    Submit
-                    </button>
-                {exercises.map(exercise => <Link to={`/${exercise._id}`}>{exercise.name}<br/></Link>)}
+                <Input placeholder="Add Exercise"
+                    value={this.state.exercise}
+                    onChange={this.handleChange}/>
+                <Button type={"submit"} onClick={this.addExercise}>Add</Button>
+                {/* <div>
+                    {exercises.map(exercise => <Link to={`/${exercise._id}`}>{exercise.name}<br/></Link>)}
+                </div> */}
+                <div>
+                <List link divided relaxed>
+                    {exercises.map(exercise => <List.Item as="a">
+                        <List.Icon name="heartbeat" size="large" />
+                        <List.Content>
+                            <Link to={`/${exercise._id}`}>{exercise.name}</Link>
+                        </List.Content>
+                    </List.Item>)}
+                </List>
+                </div> 
             </div>
           );
     }
