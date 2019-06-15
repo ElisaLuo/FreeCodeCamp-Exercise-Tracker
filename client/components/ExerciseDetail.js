@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
-import { Input, List, Button } from 'semantic-ui-react';
+import { Input, List, Button, Form, Label } from 'semantic-ui-react';
 import Calendar from 'react-calendar';
-import DatePicker from 'react-datepicker';
+import DatePicker from 'react-date-picker';
 
 class ExerciseDetail extends Component{
     constructor(props){
@@ -16,14 +16,14 @@ class ExerciseDetail extends Component{
 
         this.state ={
             name: "",
-            startDate: new Date(),
+            date: new Date(),
             duration: new Number(),
             description: ""
         };
     }
 
     handleNameChange(event){this.setState({name: event.target.value});}
-    handleDateChange = date => this.setState({startDate: date});
+    handleDateChange = date => this.setState({date: date});
     handleDurationChange(event){this.setState({duration: event.target.value});}
     handleDescriptionChange(event){this.setState({description: event.target.value});}
 
@@ -34,7 +34,7 @@ class ExerciseDetail extends Component{
                 results.map(result=>{
                     this.setState({
                         name: result.name,
-                        date: result.date,
+                        date: new Date(result.date),
                         duration: result.duration,
                         description: result.description
                     });
@@ -72,41 +72,32 @@ class ExerciseDetail extends Component{
     render(){
         return (
             <div>
-                <input
-                    onChange={this.handleNameChange}
-                    placeholder="Exercise Name"
-                    name="name"
-                    value={this.state.name}/>
-                <br/>
-                <DatePicker
-                    selected={this.state.date}
-                    onChange={this.handleDateChange}
-                    value={this.state.date}
-                    name="date"/>
-                {/* <Calendar 
-                    onChange={this.handleDateChange}
-                    value={this.state.date}
-                    name="date"/> */}
-                <br/>
-                <input
-                    onChange={this.handleDurationChange}
-                    placeholder="Exercise Duration"
-                    name="duration"
-                    value={this.state.duration}/>
-                <br/>
-                <input
-                    onChange={this.handleDescriptionChange}
-                    placeholder="Exercise Description"
-                    name="description"
-                    value={this.state.description}/>
-                <br/>
-                <button
-                    type={"submit"}
-                    onClick={this.updateExercise}
-                    >
-                    Save
-                    </button>
-                    
+                <Form>
+                    <Form.Input fluid label="Exercise Name" 
+                        placeholder="Exercise Name"
+                        onChange={this.handleNameChange}
+                        name="name"
+                        value={this.state.name}/>
+                    <Form.Group>
+                        <b>Date</b><br/>
+                        <DatePicker 
+                            onChange={this.handleDateChange}
+                            value={this.state.date}
+                            height="10vh"/>
+                        <Form.Input fluid label="Exercise Duration" 
+                            onChange={this.handleDurationChange}
+                            placeholder="Exercise Duration"
+                            name="duration"
+                            value={this.state.duration}/>
+                    </Form.Group>
+                    <Form.TextArea label="Description" 
+                        onChange={this.handleDescriptionChange}
+                        placeholder="Exercise Description"
+                        name="description"
+                        value={this.state.description} />
+                    <Form.Button type={"submit"}
+                        onClick={this.updateExercise}>Save</Form.Button>
+                </Form>
             </div>
           );
     }
