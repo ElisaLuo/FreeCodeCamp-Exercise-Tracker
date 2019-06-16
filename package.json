@@ -2,6 +2,7 @@
   "name": "exercise-tracker",
   "version": "0.1.0",
   "private": true,
+  "main": "server.js",
   "dependencies": {
     "@material-ui/core": "^4.0.1",
     "apollo-cache-inmemory": "^1.6.0",
@@ -34,7 +35,7 @@
   "scripts": {
     "build": "webpack",
     "server": "node server.js",
-    "start": "npm run build && npm run server",
+    "start": "node server.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
