@@ -29,9 +29,8 @@
     "shortid": "^2.2.14"
   },
   "scripts": {
-    "build": "webpack",
-    "server": "node server.js",
-    "start": "npm run build && npm run server",
+    
+    "start": "node server.js && webpack",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -68,5 +67,13 @@
     "webpack-dev-server": "^3.7.1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ElisaLuo/FreeCodeCamp-Exercise-Tracker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ElisaLuo/FreeCodeCamp-Exercise-Tracker/issues"
+  },
+  "homepage": "https://github.com/ElisaLuo/FreeCodeCamp-Exercise-Tracker#readme"
 }
