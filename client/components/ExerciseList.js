@@ -73,11 +73,13 @@ class ExerciseList extends Component{
                         onChange={this.handleChange}
                         style={{width: "100%"}}
                         icon={<Button type={"submit"} inverted onClick={this.addExercise} icon="add circle"></Button>}/>
-                    {exercises.map(exercise => <List.Item as="a" href={`/${exercise._id}`}>
-                        <List.Icon name="heartbeat" size="large" />
+                    {exercises.map(exercise => 
+                    <List.Item as="a">
+                    <Link to={`/${exercise._id}`}>
                         <List.Content>
-                            {exercise.name}
+                            <List.Icon name="heartbeat" inverted color="grey"  size="large" /> {exercise.name}
                         </List.Content>
+                    </Link>
                     </List.Item>)}
                     <Link to={`/`}>
                         <Button inverted style={{"margin-left":"40%"}}>

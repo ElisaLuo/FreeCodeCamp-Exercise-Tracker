@@ -70,13 +70,17 @@ class UserList extends Component{
                         onChange={this.handleChange}
                         style={{width: "100%"}}
                         icon={<Button type={"submit"} inverted onClick={this.addUser} icon="add circle"></Button>}/>
-                    {usernames.map(username => <List.Item as="a" href={`/user/${username.username}`}>
-                        <List.Icon name="user" size="large" />
-                            <List.Content>
+                    {usernames.map(username => <List.Item as="a">
+                    <Link to={`/user/${username.username}`}>
+                        <List.Content>
+                            <List.Icon inverted color="grey" name="user" size="large" />
                                 {username.username}
-                            </List.Content>
-                        </List.Item>)}
-                     </List>
+                        </List.Content>
+                        </Link>
+                    </List.Item>
+                    
+                    )}
+                </List>
                 </div> 
             </div>
           );
