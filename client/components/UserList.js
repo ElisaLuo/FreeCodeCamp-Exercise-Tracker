@@ -60,34 +60,24 @@ class UserList extends Component{
     };
 
     render(){
-        const {usernames} = this.state;
-        return (
+    const {usernames} = this.state;
+    return (
+        <div>
             <div>
-                <Input placeholder="Add User" 
-                    value={this.state.username} 
-                    onChange={this.handleChange}/>
-                <Button type={"submit"} onClick={this.addUser}>Add</Button>
-                {/* <input
-                    onChange={this.handleChange}
-                    placeholder="Add User"
-                    name="username"
-                    value={this.state.username}/>
-                <button
-                    type={"submit"}
-                    onClick={this.addUser}
-                    >
-                    Submit
-                    </button> */}
-                    <div>
-                        <List link divided relaxed>
-                            {usernames.map(username => <List.Item as="a">
-                                <List.Icon name="user" size="large" />
-                                <List.Content>
-                                    <Link to={`/user/${username.username}`}>{username.username}</Link>
-                                </List.Content>
-                            </List.Item>)}
-                        </List>
-                    </div> 
+                <List inverted link divided relaxed>
+                    <Input inverted placeholder="Add User" 
+                        value={this.state.username} 
+                        onChange={this.handleChange}
+                        style={{width: "100%"}}
+                        icon={<Button type={"submit"} inverted onClick={this.addUser} icon="add circle"></Button>}/>
+                    {usernames.map(username => <List.Item as="a" href={`/user/${username.username}`}>
+                        <List.Icon name="user" size="large" />
+                            <List.Content>
+                                {username.username}
+                            </List.Content>
+                        </List.Item>)}
+                     </List>
+                </div> 
             </div>
           );
     }

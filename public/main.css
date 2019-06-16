@@ -13,10 +13,11 @@
     margin-right: auto;
 }
 .react-date-picker{
-    height: 10%;
-    margin-top: 5%;
+    margin-top: 6%;
     margin-right: 5%;
     margin-left: -7%;
+    background-color: white;
+    border-radius: 3px;
 }
 .react-date-picker__inputGroup__input{
     height: auto;
@@ -27,4 +28,7 @@
 }
 .ui.form input[type=number]{
     border: none;
+}
+body{
+    background-color: #424242;
 }

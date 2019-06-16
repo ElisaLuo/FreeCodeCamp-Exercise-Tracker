@@ -40,7 +40,7 @@ app.get('/api/exercise/:userId', function(req, res){
     })
 });
 
-app.get('/api/exercise/:userId/:exerciseId', function(req, res){
+app.get('/api/exercise/details/:exerciseId', function(req, res){
     Exercise.find({_id:req.params.exerciseId}, function(err, exercise){
         if(err){
             console.log(err);

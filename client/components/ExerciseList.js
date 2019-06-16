@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
-import { Input, List, Button } from 'semantic-ui-react'
+import { Input, List, Button, Icon } from 'semantic-ui-react'
 
 class ExerciseList extends Component{
     constructor(props){
@@ -62,21 +62,28 @@ class ExerciseList extends Component{
         const {exercises} = this.state;
         return (
             <div>
-                <Input placeholder="Add Exercise"
-                    value={this.state.exercise}
-                    onChange={this.handleChange}/>
-                <Button type={"submit"} onClick={this.addExercise}>Add</Button>
+                
                 {/* <div>
                     {exercises.map(exercise => <Link to={`/${exercise._id}`}>{exercise.name}<br/></Link>)}
                 </div> */}
                 <div>
-                <List link divided relaxed>
-                    {exercises.map(exercise => <List.Item as="a">
+                <List inverted link divided relaxed>
+                    <Input inverted placeholder="Add Exercise"
+                        value={this.state.exercise}
+                        onChange={this.handleChange}
+                        style={{width: "100%"}}
+                        icon={<Button type={"submit"} inverted onClick={this.addExercise} icon="add circle"></Button>}/>
+                    {exercises.map(exercise => <List.Item as="a" href={`/${exercise._id}`}>
                         <List.Icon name="heartbeat" size="large" />
                         <List.Content>
-                            <Link to={`/${exercise._id}`}>{exercise.name}</Link>
+                            {exercise.name}
                         </List.Content>
                     </List.Item>)}
+                    <Link to={`/`}>
+                        <Button inverted style={{"margin-left":"40%"}}>
+                            <Icon name="angle left"></Icon>Back
+                        </Button>
+                    </Link>
                 </List>
                 </div> 
             </div>
