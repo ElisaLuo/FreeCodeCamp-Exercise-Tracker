@@ -13,9 +13,9 @@
     margin-right: auto;
 }
 .react-date-picker{
-    margin-top: 6%;
+    margin-top: 5.3%;
     margin-right: 5%;
-    margin-left: -7%;
+    margin-left: -6.5%;
     background-color: white;
     border-radius: 3px;
 }
@@ -31,4 +31,8 @@
 }
 body{
     background-color: #424242;
+}
+b{
+    font-size: 12px;
+    margin-left: 2%;
 }
