@@ -18,6 +18,7 @@ app.use(cors());
 app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.set('port', process.env.PORT || process.env.IP );
 
 app.get('/api/users', function(req, res){
     User.find({}, function(err, user){
