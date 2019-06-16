@@ -9,17 +9,6 @@ module.exports = {
       path: path.join(__dirname, 'public'),
       filename: 'bundle.js',
     },
-    plugins: [
-      new NodemonBrowsersyncPlugin({
-        script: 'server.js',
-        ignore:[
-          "src/*", 
-          "public/*"
-        ],
-        ext: 'js, json',
-        verbose: true
-      })
-    ],
     resolve: {
       extensions: ['.js', '.jsx'],
     },
