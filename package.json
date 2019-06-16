@@ -30,7 +30,7 @@
   },
   "scripts": {
     
-    "start": "node server.js && webpack",
+    "start": "webpack && node server.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
